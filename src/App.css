@@ -9,7 +9,7 @@
 .gant-container {
     position: absolute;
     top: 6px;
-    height: calc(100% - 12px);
+    /* height: calc(100% - 12px); */
     background-color: #FFFFFF;
 }
 
@@ -114,9 +114,6 @@
     right: 0;
     background-color: #FFFFFF;
 }
-
-
-
 
 /* Task row style */
 .task-row {
