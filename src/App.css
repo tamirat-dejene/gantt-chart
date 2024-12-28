@@ -68,11 +68,11 @@
 }
 
 .task-time {
-    width: 25%;
+    width: 30%;
 }
 
 .task-duration {
-    width: 21.5%;
+    width: 15%;
     border-right: none;
 }
 
@@ -114,6 +114,11 @@
     right: 0;
     background-color: #FFFFFF;
 }
+.gant-canvas canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
 /* Task row style */
 .task-row {
@@ -153,7 +158,7 @@
 }
 
 .task-row .task-time {
-    width: 25%;
+    width: 31.25%;
 }
 
 .task-row .task-duration {
