@@ -1,0 +1,77 @@
+
+.modal-input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    background: linear-gradient(90deg, #FFC107, #FF5722);
+    -webkit-background-clip: text;
+    font-size: 24px;
+    color: transparent;
+}
+
+.modal-header .close {
+    cursor: pointer;
+    font-size: 32px;
+    color: #FF5722;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-body form label {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.modal-body form input {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.modal-input .modal-body form input[type="date"] {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.modal-body form button {
+    padding: 5px;
+    font-size: 16px;
+    background-color: #FF5722;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { mock_tasks, TaskProps } from './tasksmodel';
 import './App.css';
+import ModalInput from './modalinput';
 
 const TaskRow = ({ taskName, taskTime, taskDuration }: TaskProps) => {
   return (
@@ -12,8 +13,12 @@ const TaskRow = ({ taskName, taskTime, taskDuration }: TaskProps) => {
   )
 };
 
+
+
 function App() {
   const [tasks, setTasks] = useState(mock_tasks.slice(0, 5));
+  const [newTask, setNewTask] = useState<TaskProps | null>(null);
+  const [showModal, setShowModal] = useState(false);
   const [canvaHeight, setCanvaHeight] = useState(0);
 
   useEffect(() => {
@@ -21,16 +26,20 @@ function App() {
     setCanvaHeight(tasks.length * 34); // 34px : height of each task row
   }, [tasks]);
 
+  useEffect(() => {
+    if (newTask) setTasks([...tasks, newTask]);
+  }, [newTask, tasks]);
+
   return (
     <main>
       <div className='container'>
         <div className="tasks-container" style={{ height: canvaHeight + 34 }}>
           <div className="tasks-header">
             <div className="task-name">Task Name</div>
-            <div className="task-time" title='Start time'>Time</div>
-            <div className="task-duration">Duration</div>
+            <div className="task-time" title='Start date'>Start Date</div>
+            <div className="task-duration/days">Duration</div>
             <div className="task-add" title='Add task/project'>
-              <button className="add-task-btn">+</button>
+              <button className="add-task-btn" onClick={() => setShowModal(true)}>+</button>
             </div>
           </div>
           <div className="tasks-list" style={{ height: canvaHeight + 34 }}>
@@ -57,6 +66,7 @@ function App() {
           <canvas className="gant-canvas" style={{ height: canvaHeight, borderBottom: tasks.length == 0 ? 'none' : '1px solid rgb(138, 138, 138)' }} ></canvas>
         </div>
       </div>
+      <ModalInput showModal={showModal} setShowModal={setShowModal} setNewTask={setNewTask} />
     </main>
   );
 }
