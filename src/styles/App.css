@@ -1,3 +1,12 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    font-size: 16px;
+}
+
 .container {
     background-color: rgb(250, 250, 250);
     position: relative;
@@ -24,7 +33,7 @@
 .gant-container {
     right: 6px;
     width: calc(70% - 6px);
-    padding-right:0px;
+    padding-right: 0px;
     border-right: 1px solid rgb(138, 138, 138);
 }
 
@@ -72,8 +81,13 @@
 }
 
 .task-duration {
-    width: 15%;
+    width: 100%;
     border-right: none;
+
+    display: flex;
+    align-self: stretch;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-add {
@@ -114,6 +128,7 @@
     right: 0;
     background-color: rgba(255, 255, 255, 255);
 }
+
 .gant-canvas canvas {
     background-color: rgba(255, 255, 255, 255);
     position: absolute;
@@ -165,4 +180,24 @@
 .task-row .task-duration {
     width: 15%;
     border-right: none;
+}
+
+.task-row .btn-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 4px;
+}
+
+.task-row .btn-container button {
+    background-color: inherit;
+    border: none;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+.task-row .btn-container button:hover {
+    background-color: #ebebeb;
 }

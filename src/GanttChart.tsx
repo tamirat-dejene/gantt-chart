@@ -2,34 +2,58 @@ import { mock_tasks, TaskProps } from './tasksmodel';
 import { useEffect, useState } from 'react';
 import { drawGant } from './drawchart';
 import ModalInput from './modalinput';
-import './App.css';
+import './styles/App.css';
+import { MdRemove } from 'react-icons/md';
+import { FiEdit } from 'react-icons/fi';
 
-const TaskRow = ({ taskName, taskTime, taskDuration }: TaskProps) => {
+interface TaskRowProps {
+  id: number;
+  task: TaskProps;
+  handleDelete: (id: number) => void;
+  handleEdit: (id: number) => void;
+}
+
+const TaskRow = ({ id, task, handleDelete, handleEdit }: TaskRowProps) => {
   return (
     <div className='task-row'>
-      <div className="task-name">{taskName}</div>
-      <div className="task-time">{taskTime}</div>
-      <div className="task-duration">{taskDuration}</div>
+      <div className="task-name">{task.taskName}</div>
+      <div className="task-time">{task.taskTime}</div>
+      <div className="task-duration">{task.taskDuration}</div>
+      <div className='btn-container'>
+        <button className='delete' onClick={() => handleDelete(id)}><MdRemove /></button>
+        <button className="edit" onClick={() => handleEdit(id)}><FiEdit /></button>
+      </div>
     </div>
   )
 };
 
-function App() {
+function GanttChart() {
   const [tasks, setTasks] = useState<TaskProps[]>(mock_tasks);
+  const [editingTask, setEditingTask] = useState<TaskProps | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [canvasHeight, setCanvaHeight] = useState(0);
+
+  const handleDelete = (id: number) => {
+    const newTasks = tasks.filter((_, index) => index !== id);
+    setTasks(newTasks);
+  }
+
+  const handleEdit = (id: number) => {
+    const task = tasks.find((_, index) => index === id);
+    if (!task) return;
+    setEditingTask(task);
+    setShowModal(true);
+  }
 
   useEffect(() => {
     setCanvaHeight(tasks.length * 34); // 34px : height of each task row
   }, [tasks]);
 
   useEffect(() => {
-    if (canvasHeight == 0) return;
+    if (canvasHeight == 0 && !editingTask) return;
     try {
       drawGant("canvas-sheet", {
         tasks: tasks, options: {
-          gant_color: "#ffbf00",
-          stroke_color: "#ff4000",
           gant_offset: 0,
           border_radius: 5
         }
@@ -37,8 +61,8 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [canvasHeight]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [canvasHeight, editingTask]);
 
   return (
     <main>
@@ -49,12 +73,15 @@ function App() {
             <div className="task-time" title='Start date'>Start Date</div>
             <div className="task-duration/days">Duration</div>
             <div className="task-add" title='Add task/project'>
-              <button className="add-task-btn" onClick={() => { setShowModal(true) }}>+</button>
+              <button className="add-task-btn" onClick={() => {
+                setEditingTask(null)
+                setShowModal(true)
+              }}>+</button>
             </div>
           </div>
           <div className="tasks-list" style={{ height: canvasHeight + 34 }}>
             {tasks.map((task, index) => (
-              <TaskRow key={index} taskName={task.taskName} taskTime={task.taskTime} taskDuration={task.taskDuration} />
+              <TaskRow key={index} id={index} task={task} handleEdit={handleEdit} handleDelete={handleDelete} />
             ))}
           </div>
         </div>
@@ -81,9 +108,9 @@ function App() {
             }}></canvas>
         </div>
       </div>
-      <ModalInput showModal={showModal} setShowModal={setShowModal} tasks={tasks} setTasks={setTasks} />
+      <ModalInput editingTask={editingTask} showModal={showModal} setShowModal={setShowModal} setEditingTask={setEditingTask} tasks={tasks} setTasks={setTasks} />
     </main>
   );
 }
 
-export default App;
+export default GanttChart;

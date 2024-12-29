@@ -3,12 +3,13 @@ import { getDayOfYear } from "./utils";
 
 const def_val = {
   gant_offset: 4,
-  gant_color: "#595959",
-  stroke_color: "#595959",
+  gant_color: "#ffbf00",
+  stroke_color: "#ff4000",
   stroke_width: "1px",
   default_bg: [0, 0, 0, 0],
 };
 
+// Draw the gant chart
 export const drawGant = (canvas_id: string, gant: Gant) => {
   const canvas = document.getElementById(canvas_id) as HTMLCanvasElement;
   const ctx = canvas?.getContext("2d", { willReadFrequently: true });
@@ -30,12 +31,11 @@ export const drawGant = (canvas_id: string, gant: Gant) => {
     const day_of_the_year = getDayOfYear(new Date(start_date));
 
     // get the optional values
-    const gant_color = gant.options?.gant_color || def_val.gant_color;
-    const stroke_color = gant.options?.stroke_color || def_val.stroke_color;
+    const gant_color = task.fillColor || def_val.gant_color;
+    const stroke_color = task.borderColor || def_val.stroke_color;
     const stroke_width = 1;
     const offset = gant.options?.gant_offset || def_val.gant_offset;
     if (offset > a_task_height / 2) {
-      console.log("Offset: ", offset, " Task height: ", a_task_height);
       throw new Error("Offset cannot be greater than half of the task height.");
     }
 
@@ -44,8 +44,6 @@ export const drawGant = (canvas_id: string, gant: Gant) => {
     const tly = index * a_task_height + offset;
     const brx = tlx + (canvas_width / 365) * duration - 1; // - 1 is to discount the border width
     const bry = tly + a_task_height - 2 * offset;
-
-    console.log("Top left: ", tlx, tly, " Bottom right: ", brx, bry);
 
     // draw the chart
     drawRectangle(
@@ -115,6 +113,7 @@ export const drawLine = (
   }
 };
 
+// Draw a rectangle
 export const drawRectangle = (
   topLeft: _2DCoordinate,
   btmRight: _2DCoordinate,

@@ -50,25 +50,48 @@
     gap: 10px;
 }
 
-.modal-body form label {
-    font-size: 15px;
-    font-weight: 500;
+.modal-body form label,
+.modal-body .color-picker-container .border-color label,
+.modal-body .color-picker-container .fill-color label {
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .modal-body form input {
     padding: 5px;
-    font-size: 16px;
+    font-size: 13px;
     border-radius: 5px;
 }
 
 .modal-input .modal-body form input[type="date"] {
     padding: 5px;
+    font-size: 12px;
+}
+
+.modal-body .color-picker-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body .color-picker-container .border-color,
+.modal-body .color-picker-container .fill-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-body .color-picker-container .border-color input,
+.modal-body .color-picker-container .fill-color input {
+    padding: 5px;
     font-size: 16px;
+    border-radius: 5px;
 }
 
 .modal-body form button {
     padding: 5px;
-    font-size: 16px;
+    font-size: 13px;
+    font-weight: 600;
     background-color: #FF5722;
     color: #FFFFFF;
     border: none;

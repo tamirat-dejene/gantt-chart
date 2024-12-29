@@ -2,13 +2,15 @@ type TaskProps = {
   taskName: string;
   taskTime: string;
   taskDuration: string;
+  borderColor?: string;
+  fillColor?: string;
 };
 
 const mock_tasks: TaskProps[] = [
   {
     taskName: "Requirements Gathering",
     taskTime: "2023-01-01",
-    taskDuration: "30",
+    taskDuration: "7",
   },
   {
     taskName: "Design Phase",
