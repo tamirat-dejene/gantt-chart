@@ -6,32 +6,31 @@ type TaskProps = {
 
 const mock_tasks: TaskProps[] = [
   {
-    taskName: "Sample Task 1",
-    taskTime: "2024-12-28",
-    taskDuration: "2",
+    taskName: "Requirements Gathering",
+    taskTime: "2023-01-01",
+    taskDuration: "30",
   },
   {
-    taskName: "Sample Task 2",
-    taskTime: "2024-12-28",
-    taskDuration: "2",
+    taskName: "Design Phase",
+    taskTime: "2023-01-08",
+    taskDuration: "3",
   },
   {
-    taskName: "Sample Task 3",
-    taskTime: "2024-12-28",
-    taskDuration: "2",
+    taskName: "Prototype Development",
+    taskTime: "2023-01-15",
+    taskDuration: "7",
   },
   {
-    taskName: "Sample Task 4",
-    taskTime: "2024-12-28",
-    taskDuration: "2",
+    taskName: "User Testing",
+    taskTime: "2023-01-25",
+    taskDuration: "4",
   },
   {
-    taskName: "Sample Task 5",
-    taskTime: "2024-12-28",
+    taskName: "Deployment",
+    taskTime: "2023-02-01",
     taskDuration: "2",
-  }
+  },
 ];
-
 
 export { mock_tasks };
 export type { TaskProps };

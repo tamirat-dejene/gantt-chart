@@ -112,9 +112,10 @@
 
 .gant-canvas {
     right: 0;
-    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 255);
 }
 .gant-canvas canvas {
+    background-color: rgba(255, 255, 255, 255);
     position: absolute;
     top: 0;
     left: 0;
