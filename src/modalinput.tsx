@@ -33,6 +33,7 @@ const ModalInput = ({ showModal, editingTask, setShowModal, setEditingTask, task
             setShowModal(false);
             return;
         }
+        form?.reset();
         setTasks([...tasks, newTask])
         setShowModal(false);
     }
@@ -40,8 +41,11 @@ const ModalInput = ({ showModal, editingTask, setShowModal, setEditingTask, task
         <div className="modal-input" style={{ display: showModal ? 'block' : 'none' }}>
             <div className="modal-content">
                 <div className="modal-header">
-                    <h2>Add Task</h2>
-                    <span className="close" title='close' onClick={() => setShowModal(false)}>&times;</span>
+                    <h2>{editingTask ? 'Edit Task' : 'Add Task'}</h2>
+                    <span className="close" title='close' onClick={() => {
+                        setEditingTask(null)
+                        setShowModal(false)
+                    }}>&times;</span>
                 </div>
                 <div className="modal-body">
                     <form onSubmit={handleSubmit}>
