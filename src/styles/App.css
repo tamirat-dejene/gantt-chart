@@ -77,11 +77,11 @@
 }
 
 .task-time {
-    width: 30%;
+    width: 29%;
 }
 
 .task-duration {
-    width: 100%;
+    width: 15%;
     border-right: none;
 
     display: flex;
@@ -174,11 +174,11 @@
 }
 
 .task-row .task-time {
-    width: 31.25%;
+    width: 30%;
 }
 
 .task-row .task-duration {
-    width: 14%;
+    width: 15%;
     border-right: none;
 }
 

@@ -71,7 +71,7 @@ function GanttChart() {
           <div className="tasks-header">
             <div className="task-name">Task Name</div>
             <div className="task-time" title='Start date'>Start Date</div>
-            <div className="task-duration/days">Duration</div>
+            <div className="task-duration" title='duration/days'>Duration</div>
             <div className="task-add" title='Add task/project'>
               <button className="add-task-btn" onClick={() => {
                 setEditingTask(null)
